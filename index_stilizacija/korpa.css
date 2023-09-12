@@ -1,0 +1,66 @@
+
+
+
+
+/* Dodajte ove stilove za notifikaciju */
+.notification {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    padding: 4px;
+    border-radius: 50%;
+}
+
+/* Dodajte ove stilove za korpu link */
+.cart-link {
+    position: fixed;
+    top: 20px;
+    right: 80px;
+    /* Pomeramo link malo ulevo od korpe */
+    display: flex;
+    align-items: center;
+    background-color: #f7f7f7;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    text-decoration: none;
+    color: #333;
+}
+
+.cart-icon {
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+.cart-items {
+    font-size: 16px;
+    font-weight: bold;
+    color: red;
+    /* Boja notifikacije za broj */
+    margin-left: 5px;
+    /* Malo pomeramo notifikaciju od ikone */
+}
+
+/* Dodajte ove stilove za dugme "Kupi" */
+#kupi-btn {
+    display: block;
+    margin-top: 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+#kupi-btn:hover {
+    background-color: #45a049;
+}

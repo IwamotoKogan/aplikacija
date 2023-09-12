@@ -1,0 +1,167 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: rgb(233, 234, 190);
+    gap: 30px;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: azure;
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    
+    /*DODATO*/
+    
+    position: absolute;
+        right: 0;
+        width: 33.33%;
+       
+        padding: 20px;
+        box-sizing: border-box;
+        margin: 10px;
+        /*DODATO*/
+}
+
+.header {
+    color: #002;
+}
+
+.inputBox {
+    position: relative;
+    width: 250px;
+}
+
+.inputBox input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid rgba(225, 225, 225, 0.25);
+    background: #002;
+    border-radius: 6px;
+    outline: none;
+    font-size: 1em;
+    color: #fff;
+    transition: 0.5s all;
+}
+
+.inputBox span {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 10px;
+    pointer-events: none;
+    color: azure;
+    text-transform: uppercase;
+    transition: 0.5s all ease-in;
+}
+
+.inputBox input:valid~span,
+.inputBox input:focus~span {
+    color: azure;
+    transform: translate(10px, -7px);
+    font-size: 0.75em;
+    padding: 0 10px;
+    background-color: #002;
+    border-left: 1px solid rgba(225, 225, 225, 0.759);
+    border-right: 1px solid rgba(225, 225, 225, 0.759);
+    letter-spacing: 4px;
+    font-weight: 800;
+}
+
+.inputBox input:focus,
+.inputBox input:valid {
+    border: 1px solid rgba(225, 225, 225, 0.759);
+    box-shadow: 0 0 15px rgba(225, 225, 225, 0.759);
+}
+
+.btn {
+    appearance: none;
+    background-color: transparent;
+    border: 2px solid #1A1A1A;
+    border-radius: 15px;
+    box-sizing: border-box;
+    color: #3B3B3B;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Roobert, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 16px;
+    font-weight: 600;
+    line-height: normal;
+    margin: 0;
+    min-height: 60px;
+    min-width: 0;
+    outline: none;
+    padding: 16px 24px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: 100%;
+    will-change: transform;
+}
+
+.btn:disabled {
+    pointer-events: none;
+}
+
+.btn:hover {
+    color: #fff;
+    background-color: #1A1A1A;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+}
+
+.btn:active {
+    box-shadow: none;
+    transform: translateY(0);
+}
+
+.result {
+    color: #fff;
+}
+
+/************************************DODATO**************************************************/
+
+.inputflex {
+    display: flex;
+    border: 22px solid black;
+    flex-wrap: wrap;
+        /* Omogućava da se elementi prelome na sledeći red */
+        overflow: auto;
+}
+
+.inputBox {
+    width: 8rem;
+    flex-grow: 1;
+    margin-right: 10px;
+    /* Opciono: dodajte razmak između input polja */
+}
+
+.inputBox:last-child {
+    margin-right: 0;
+    /* Uklanja razmak nakon poslednjeg input polja */
+}
+
+.inputBox input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.inputBox span {
+    color: #c3b0a3;
+    display: block;
+    margin-top: 5px;
+    font-weight: bold;
+}
+

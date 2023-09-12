@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Moja korpa</title>
+    
+    <link rel="stylesheet" href="./korpa stilizacija/popup.css">
+    
+    <style>
+        #kuhinja-details {
+            /*dodaj neki background i border radi stilizacije*/
+        }
+        .item-details {
+             border: 3px solid purple;
+             margin-top: 20px;
+             margin-bottom: 20px;
+             padding: 10px;
+             background-color: rgb(230, 218, 203);
+             text-align: center;
+             font-size: medium;
+             font-weight: 800;
+             font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+
+        /*delete popup*/
+        #deleteModal {
+    display: none;
+}
+
+#deleteModal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Providna pozadina */
+    z-index: 1000; /* Postavite viši z-index da biste bili iznad ostalog sadržaja */
+   
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    position: relative;
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+   width: 25px;
+   height: 25px;
+    border-radius: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: rgb(176, 32, 32);
+}
+#deleteYes, #deleteNo {
+    cursor: pointer;
+}
+        /*delete popup*/
+    </style>
+    
+</head>
+
+<body>
+    
+<div id="kuhinja-details">
+    <!-- Ovde ćemo prikazati detalje o kuhinji koja je dodata u korpu -->
+    <p>Kreirali ste element: 200cm x 150cm x 60cm, cena vašeg elementa je 2500 evra.</p>
+    <div id="recommended-front-details">
+    <!-- Ovde ćemo prikazati dimenzije preporučenog fronta -->
+</div>
+</div>
+
+
+<!--<div class="order1">
+    <button id="order-button">Naruči</button>
+</div>-->
+
+
+<!--************popuo**************-->
+<!-- HTML kod za popup prozor -->
+<div id="popup">
+    <div id="popup-content">
+        <button class="zatvori" id="close-popup">zatvori</button>
+        
+        <p id="order-message" data-height="200cm" data-width="150cm" data-depth="60cm" data-price="2500">Da li ste sigurni da želite da naručite ovaj proizvod?</p>
+        <button id="confirm-order-button">Naruči</button>
+    </div>
+</div>
+
+<!--************KRAJ popuo**************-->
+
+<!--popup za BRISANJE elementa-->
+<div id="deleteModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <p>Da li ste sigurni da želite da izbrišete ovaj element?</p>
+        <button id="deleteYes">Da</button>
+        <button id="deleteNo">Ne</button>
+    </div>
+</div>
+
+<!--popup za BRISANJE elementa-->
+
+ <!--<script>
+        
+          // Dodajte ovaj kod za prikaz detalja o kuhinji sačuvane u localStorage na stranici korpa.html
+            const kuhinjaDetailsDiv = document.getElementById('kuhinja-details');
+
+            // Provera da li ima podataka o kuhinji u localStorage
+            const kuhinjaData = JSON.parse(localStorage.getItem('kuhinjaData'));
+            console.log(kuhinjaData)
+
+            if (kuhinjaData && kuhinjaData.price !== 0) {
+                const kuhinjaDetailsHTML = `
+        <p>Kreiraliiiiiiii ste element: ${kuhinjaData.height}cm x ${kuhinjaData.width}cm x ${kuhinjaData.depth}cm, cena vaseg elementa je ${kuhinjaData.price} evra.</p>
+        <hr>
+        
+
+
+    `;
+                kuhinjaDetailsDiv.innerHTML = kuhinjaDetailsHTML;
+            } else {
+                kuhinjaDetailsDiv.innerHTML = "<p>Nemate nijedan element u korpi.</p>";
+            }
+
+            /********************POPUP**************************/
+
+            /********************KRAJ POPUP**************************/
+    </script>-->  
+    <script src="./korpa javascript/popup.js"></script>
+   
+</body>
+
+</html>
+

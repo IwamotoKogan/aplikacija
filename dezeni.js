@@ -74,6 +74,12 @@ document.addEventListener('DOMContentLoaded', function () {
             //const width = 0; // Postavite željenu širinu
             //const depth = 0; // Postavite željenu dubinu
 
+            // Dodajte ovo kako biste definisali početne vrednosti visine, širine i dubine
+let height = 0;
+let width = 0;
+let depth = 0;
+
+
             // Dodajte event listenere za promene u dimenzijama
             const heightInput = document.getElementById('height');
             const widthInput = document.getElementById('width');

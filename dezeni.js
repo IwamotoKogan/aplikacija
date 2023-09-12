@@ -70,9 +70,9 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             // Dodajte ovo kako biste definisali visinu, širinu i dubinu
-            const height = 0; // Postavite željenu visinu
-            const width = 0; // Postavite željenu širinu
-            const depth = 0; // Postavite željenu dubinu
+            //const height = 0; // Postavite željenu visinu
+            //const width = 0; // Postavite željenu širinu
+            //const depth = 0; // Postavite željenu dubinu
 
             // Dodajte event listenere za promene u dimenzijama
             const heightInput = document.getElementById('height');

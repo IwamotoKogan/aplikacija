@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     let additionalDezenPrice = 0;
-    let totalPrice = 0; // Dodajte promenljivu za praćenje ukupne cene
+    let calculatedPrice = 0; // Dodajte promenljivu za praćenje cene na osnovu dimenzija
 
     /*fetch*/
     // Dohvatanje JSON podataka o dezenima
@@ -89,8 +89,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         additionalDezenPrice = 0; // Ako dezen nije pronađen ili nema cene, postavite cenu na 0 ili drugu podrazumevanu vrednost
                     }
 
-                    // Ažurirajte ukupnu cenu tako što ćete dodati cenu odabranog dezena na postojeću cenu
-                    totalPrice += additionalDezenPrice;
+                    // Ažurirajte ukupnu cenu tako što ćete dodati cenu odabranog dezena na cenu na osnovu dimenzija
+                    const totalPrice = calculatedPrice + additionalDezenPrice;
 
                     // Postavite tekst konačne cene u odgovarajući element na stranici
                     document.getElementById('price').innerText = `Cena: ${totalPrice} evra`;
@@ -99,11 +99,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Funkcija za ažuriranje ukupne cene
             function updateTotalPrice(height, width, depth, additionalDezenPrice) {
-                // Implementirajte logiku za izračunavanje konačne cene ovde
-                const calculatedPrice = calculatePrice(height, width, depth);
+                // Implementirajte logiku za izračunavanje cene na osnovu dimenzija ovde
+                calculatedPrice = calculatePrice(height, width, depth);
 
-                // Postavite tekst konačne cene u odgovarajući element na stranici, dodajući izračunatu cenu na cenu odabranih dezena
-                document.getElementById('price').innerText = `Cena: ${totalPrice + calculatedPrice} evra`;
+                // Postavite tekst konačne cene u odgovarajući element na stranici, dodajući cenu odabranog dezena na cenu na osnovu dimenzija
+                const totalPrice = calculatedPrice + additionalDezenPrice;
+                document.getElementById('price').innerText = `Cena: ${totalPrice} evra`;
             }
 
             /*promena cene*/
@@ -138,5 +139,5 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     /*dodato*/
-    /*.l.*/
 });
+

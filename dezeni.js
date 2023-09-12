@@ -1,6 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
     let additionalDezenPrice = 0;
     let calculatedPrice = 0; // Dodajte promenljivu za praćenje cene na osnovu dimenzija
+    let height = 0;
+    let width = 0;
+    let depth = 0;
 
     /*fetch*/
     // Dohvatanje JSON podataka o dezenima
@@ -54,11 +57,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
             });
 
-            // Dodajte ovo kako biste definisali visinu, širinu i dubinu
-            const height = 0; // Postavite željenu visinu
-            const width = 0; // Postavite željenu širinu
-            const depth = 0; // Postavite željenu dubinu
-
             // Funkcija za ažuriranje ukupne cene
             function updateTotalPrice(height, width, depth) {
                 // Implementirajte logiku za izračunavanje cene na osnovu dimenzija ovde
@@ -69,17 +67,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 document.getElementById('price').innerText = `Cena: ${totalPrice} evra`;
             }
 
-            // Dodajte ovo kako biste definisali visinu, širinu i dubinu
-            //const height = 0; // Postavite željenu visinu
-            //const width = 0; // Postavite željenu širinu
-            //const depth = 0; // Postavite željenu dubinu
-
-            // Dodajte ovo kako biste definisali početne vrednosti visine, širine i dubine
-let height = 0;
-let width = 0;
-let depth = 0;
-
-
             // Dodajte event listenere za promene u dimenzijama
             const heightInput = document.getElementById('height');
             const widthInput = document.getElementById('width');
@@ -87,17 +74,20 @@ let depth = 0;
 
             heightInput.addEventListener('input', () => {
                 const newHeight = parseFloat(heightInput.value);
-                updateTotalPrice(newHeight, width, depth);
+                height = newHeight; // Ažurirajte visinu
+                updateTotalPrice(height, width, depth);
             });
 
             widthInput.addEventListener('input', () => {
                 const newWidth = parseFloat(widthInput.value);
-                updateTotalPrice(height, newWidth, depth);
+                width = newWidth; // Ažurirajte širinu
+                updateTotalPrice(height, width, depth);
             });
 
             depthInput.addEventListener('input', () => {
                 const newDepth = parseFloat(depthInput.value);
-                updateTotalPrice(height, width, newDepth);
+                depth = newDepth; // Ažurirajte dubinu
+                updateTotalPrice(height, width, depth);
             });
 
             /*promena cene*/
@@ -129,5 +119,5 @@ let depth = 0;
     });
 
     /*dodato*/
-    /* 8====D () */
+  
 });

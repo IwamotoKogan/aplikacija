@@ -89,14 +89,14 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
 
                     // Ažurirajte ukupnu cenu
-                    updateTotalPrice(height, width, depth, selectedDezenPrice, additionalDezenPrice);
+                    updateTotalPrice(height, width, depth, additionalDezenPrice);
                 });
             });
 
             // Funkcija za ažuriranje ukupne cene
-            function updateTotalPrice(height, width, depth, dezenPrice, additionalDezenPrice) {
+            function updateTotalPrice(height, width, depth, additionalDezenPrice) {
                 // Implementirajte logiku za izračunavanje konačne cene ovde
-                const totalPrice = calculatePrice(height, width, depth) + dezenPrice + additionalDezenPrice;
+                const totalPrice = calculatePrice(height, width, depth) + additionalDezenPrice;
 
                 // Postavite tekst konačne cene u odgovarajući element na stranici
                 document.getElementById('price').innerText = `Cena: ${totalPrice} evra`;
@@ -134,5 +134,5 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     /*dodato*/
-    /*.l.*/
 });
+

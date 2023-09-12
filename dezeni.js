@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     let additionalDezenPrice = 0;
+    let totalPrice = 0; // Dodajte promenljivu za praćenje ukupne cene
 
     /*fetch*/
     // Dohvatanje JSON podataka o dezenima
@@ -88,18 +89,21 @@ document.addEventListener('DOMContentLoaded', function () {
                         additionalDezenPrice = 0; // Ako dezen nije pronađen ili nema cene, postavite cenu na 0 ili drugu podrazumevanu vrednost
                     }
 
-                    // Ažurirajte ukupnu cenu
-                    updateTotalPrice(height, width, depth, additionalDezenPrice);
+                    // Ažurirajte ukupnu cenu tako što ćete dodati cenu odabranog dezena na postojeću cenu
+                    totalPrice += additionalDezenPrice;
+
+                    // Postavite tekst konačne cene u odgovarajući element na stranici
+                    document.getElementById('price').innerText = `Cena: ${totalPrice} evra`;
                 });
             });
 
             // Funkcija za ažuriranje ukupne cene
             function updateTotalPrice(height, width, depth, additionalDezenPrice) {
                 // Implementirajte logiku za izračunavanje konačne cene ovde
-                const totalPrice = calculatePrice(height, width, depth) + additionalDezenPrice;
+                const calculatedPrice = calculatePrice(height, width, depth);
 
-                // Postavite tekst konačne cene u odgovarajući element na stranici
-                document.getElementById('price').innerText = `Cena: ${totalPrice} evra`;
+                // Postavite tekst konačne cene u odgovarajući element na stranici, dodajući izračunatu cenu na cenu odabranih dezena
+                document.getElementById('price').innerText = `Cena: ${totalPrice + calculatedPrice} evra`;
             }
 
             /*promena cene*/
@@ -135,3 +139,4 @@ document.addEventListener('DOMContentLoaded', function () {
 
     /*dodato*/
 });
+

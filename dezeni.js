@@ -25,51 +25,8 @@ document.addEventListener('DOMContentLoaded', function () {
             // Postavljanje generisanog HTML-a unutar odgovarajućeg kontejnera
             dezeniContainer.innerHTML += html;
 
-            /*premesten*/
             // Dodajte event listenere za interakciju sa odabranim dezenom
             const patterns = document.querySelectorAll('.pattern');
-            patterns.forEach(pattern => {
-                pattern.addEventListener('click', () => {
-                    selectedImage.src = pattern.querySelector('img').src;
-                    selectedPatternTitle.textContent = pattern.querySelector('p').textContent;
-                    selectedPattern.style.display = 'block'; // Prikažite odabrani dezen
-                    patternPopup.classList.remove('active'); // Zatvorite popup prozor
-                });
-            });
-
-            // Dodajte ovo kako biste definisali visinu, širinu i dubinu
-            const height = 0; // Postavite željenu visinu
-            const width = 0; // Postavite željenu širinu
-            const depth = 0; // Postavite željenu dubinu
-
-            /*pretraga dezena***********/
-
-            // Dobijte referencu na input polje za pretragu
-            const searchInput = document.getElementById('search-pattern');
-
-            // Dodajte event listener za promene u input polju
-            searchInput.addEventListener('input', () => {
-                const searchValue = searchInput.value.toLowerCase(); // Dobijte vrednost pretrage i pretvorite je u mala slova
-
-                // Dobijte sve dezeni
-                const patterns = document.querySelectorAll('.pattern');
-
-                // Iterirajte kroz svaki dezen i sakrijte one koji ne odgovaraju unosu pretrage
-                patterns.forEach(pattern => {
-                    const name = pattern.querySelector('p').textContent.toLowerCase(); // Dobijte ime dezena
-
-                    if (name.includes(searchValue)) {
-                        pattern.style.display = 'block'; // Prikaži dezen ako odgovara pretrazi
-                    } else {
-                        pattern.style.display = 'none'; // Sakrij dezen ako ne odgovara pretrazi
-                    }
-                });
-            });
-
-            /*pretraga dezena*/
-
-            /*promena cene*/
-            // Unutar funkcije koja se poziva kada se klikne na dezen, ažurirajte izabrani dezen i njegovu cenu
             patterns.forEach(pattern => {
                 pattern.addEventListener('click', () => {
                     selectedImage.src = pattern.querySelector('img').src;
@@ -97,8 +54,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
             });
 
+            // Dodajte ovo kako biste definisali visinu, širinu i dubinu
+            const height = 0; // Postavite željenu visinu
+            const width = 0; // Postavite željenu širinu
+            const depth = 0; // Postavite željenu dubinu
+
             // Funkcija za ažuriranje ukupne cene
-            function updateTotalPrice(height, width, depth, additionalDezenPrice) {
+            function updateTotalPrice(height, width, depth) {
                 // Implementirajte logiku za izračunavanje cene na osnovu dimenzija ovde
                 calculatedPrice = calculatePrice(height, width, depth);
 
@@ -107,19 +69,41 @@ document.addEventListener('DOMContentLoaded', function () {
                 document.getElementById('price').innerText = `Cena: ${totalPrice} evra`;
             }
 
+            // Dodajte ovo kako biste definisali visinu, širinu i dubinu
+            const height = 0; // Postavite željenu visinu
+            const width = 0; // Postavite željenu širinu
+            const depth = 0; // Postavite željenu dubinu
+
+            // Dodajte event listenere za promene u dimenzijama
+            const heightInput = document.getElementById('height');
+            const widthInput = document.getElementById('width');
+            const depthInput = document.getElementById('depth');
+
+            heightInput.addEventListener('input', () => {
+                const newHeight = parseFloat(heightInput.value);
+                updateTotalPrice(newHeight, width, depth);
+            });
+
+            widthInput.addEventListener('input', () => {
+                const newWidth = parseFloat(widthInput.value);
+                updateTotalPrice(height, newWidth, depth);
+            });
+
+            depthInput.addEventListener('input', () => {
+                const newDepth = parseFloat(depthInput.value);
+                updateTotalPrice(height, width, newDepth);
+            });
+
             /*promena cene*/
-            /*premesten*/
         })
         .catch(function (error) {
             console.error("Greška pri dohvatanju podataka: " + error);
         });
 
-    /*fetch*/
     const selectText = document.getElementById('select-text');
     const chooseButton = document.getElementById('choose-pattern');
     const patternPopup = document.getElementById('pattern-popup');
     const closePopupButton = document.getElementById('close-popup');
-    const patternGrid = document.querySelector('.pattern-grid');
     const selectedPattern = document.getElementById('selected-pattern');
     const selectedImage = document.getElementById('selected-image');
     const selectedPatternTitle = document.getElementById('selected-pattern-title');
@@ -139,5 +123,5 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     /*dodato*/
+    /* 8====D  */
 });
-

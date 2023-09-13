@@ -1,4 +1,4 @@
- // Funkcija za izračunavanje cene na osnovu dimenzija
+// Funkcija za izračunavanje cene na osnovu dimenzija
 const dezen1Price = 0;   // Osnovni dezen
 const dezen2Price = 50;  // Crni kamen
 const dezen3Price = 70;  // Beli mermer
@@ -154,5 +154,3 @@ function calculateRecommendedFrontDimensions(height, width, depth) {
     const recommendedWidth = width - 0.4; // Smanjite širinu za 4mm
     return { recommendedHeight, recommendedWidth };
 }
-
-/* dodato */

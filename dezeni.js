@@ -1,97 +1,145 @@
-document.addEventListener('DOMContentLoaded', function () {
-    let selectedDezenPrice = 0;
-    let selectedDezen;
+ document.addEventListener('DOMContentLoaded', function () {
 
-    // Funkcija za ažuriranje ukupne cene
-    function updateTotalPrice() {
-        const heightInput = document.getElementById('height');
-        const widthInput = document.getElementById('width');
-        const depthInput = document.getElementById('depth');
 
-        const height = parseInt(heightInput.value);
-        const width = parseInt(widthInput.value);
-        const depth = parseInt(depthInput.value);
 
-        if (!isValidNumber(height) || !isValidNumber(width) || !isValidNumber(depth)) {
-            document.getElementById('price').innerText = "Niste uneli validne podatke";
-            return;
-        }
+            /*fetch*/
+            // Dohvatanje JSON podataka o dezenima
+            fetch("dezeni.json")
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (dezeni) {
+                    let dezeniContainer = document.querySelector(".pattern-grid");
+                    let html = "";
 
-        if (!isValidDimensions(height, width, depth)) {
-            document.getElementById('price').innerText = "Dimenzije koje ste uneli su izvan dozvoljenog opsega";
-            return;
-        }
+                    // Iteriranje kroz svaki dezen i generisanje HTML za svaki od njih
+                    dezeni.forEach(function (dezen) {
+                        html += `
+        <div class="pattern">
+          <img src="${dezen.image}" alt="${dezen.name}">
+          <p>${dezen.name}</p>
+        </div>
+      `;
+                    });
 
-        const totalPrice = calculatePrice(height, width, depth);
+                    // Postavljanje generisanog HTML-a unutar odgovarajućeg kontejnera
+                    dezeniContainer.innerHTML += html;
 
-        document.getElementById('price').innerText = `Cena: ${totalPrice + selectedDezenPrice} evra`;
-    }
+                    /*premesten*/
+                    // Dodajte event listenere za interakciju sa odabranim dezenom
+                    const patterns = document.querySelectorAll('.pattern');
+                    patterns.forEach(pattern => {
+                        pattern.addEventListener('click', () => {
+                            selectedImage.src = pattern.querySelector('img').src;
+                            selectedPatternTitle.textContent = pattern.querySelector('p').textContent;
+                            selectedPattern.style.display = 'block'; // Prikažite odabrani dezen
+                            patternPopup.classList.remove('active'); // Zatvorite popup prozor
+                        });
+                    });
 
-    // Dohvatanje JSON podataka o dezenima i generisanje HTML-a
-    fetch("dezeni.json")
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (dezeni) {
-            const dezeniContainer = document.querySelector(".pattern-grid");
-            let html = "";
 
-            dezeni.forEach(function (dezen) {
-                html += `
-                    <div class="pattern">
-                        <img src="${dezen.image}" alt="${dezen.name}">
-                        <p>${dezen.name}</p>
-                    </div>
-                `;
-            });
+                    /*pretraga dezena***********/
 
-            dezeniContainer.innerHTML = html;
+                    // Dobijte referencu na input polje za pretragu
+                    const searchInput = document.getElementById('search-pattern');
 
-            const patterns = document.querySelectorAll('.pattern');
-            patterns.forEach(pattern => {
-                pattern.addEventListener('click', () => {
-                    selectedImage.src = pattern.querySelector('img').src;
-                    selectedPatternTitle.textContent = pattern.querySelector('p').textContent;
-                    selectedPattern.style.display = 'block';
-                    patternPopup.classList.remove('active');
+                    // Dodajte event listener za promene u input polju
+                    searchInput.addEventListener('input', () => {
+                        const searchValue = searchInput.value.toLowerCase(); // Dobijte vrednost pretrage i pretvorite je u mala slova
 
-                    const patternName = pattern.querySelector('p').textContent;
-                    selectedDezen = dezeni.find(dezen => dezen.name === patternName);
+                        // Dobijte sve dezeni
+                        const patterns = document.querySelectorAll('.pattern');
 
-                    if (selectedDezen) {
-                        selectedDezenPrice = selectedDezen.price;
-                    } else {
-                        selectedDezenPrice = 0;
+                        // Iterirajte kroz svaki dezen i sakrijte one koji ne odgovaraju unosu pretrage
+                        patterns.forEach(pattern => {
+                            const name = pattern.querySelector('p').textContent.toLowerCase(); // Dobijte ime dezena
+
+                            if (name.includes(searchValue)) {
+                                pattern.style.display = 'block'; // Prikaži dezen ako odgovara pretrazi
+                            } else {
+                                pattern.style.display = 'none'; // Sakrij dezen ako ne odgovara pretrazi
+                            }
+                        });
+                    });
+                   
+                    /*pretraga dezena*/
+
+                    /*promena cene*/
+                    // Unutar funkcije koja se poziva kada se klikne na dezen, ažurirajte izabrani dezen i njegovu cenu
+                    patterns.forEach(pattern => {
+                        pattern.addEventListener('click', () => {
+                            selectedImage.src = pattern.querySelector('img').src;
+                            selectedPatternTitle.textContent = pattern.querySelector('p').textContent;
+                            selectedPattern.style.display = 'block'; // Prikažite odabrani dezen
+                            patternPopup.classList.remove('active'); // Zatvorite popup prozor
+
+                            // Dobijte naziv odabranog dezena
+                            const patternName = pattern.querySelector('p').textContent;
+
+                            // Pronađite dezen sa datim nazivom u JSON-u
+                            selectedDezen = dezeni.find(dezen => dezen.name === patternName);
+
+                            if (selectedDezen) {
+                                selectedDezenPrice = selectedDezen.price; // Koristite cenu iz JSON-a
+                            } else {
+                                selectedDezenPrice = 0; // Ako dezen nije pronađen, postavite cenu na 0 ili drugu podrazumevanu vrednost
+                            }
+
+                            // Ažurirajte ukupnu cenu
+                            updateTotalPrice(height, width, depth, selectedDezenPrice, additionalDezenPrice);
+                        });
+                    });
+
+                    // Funkcija za ažuriranje ukupne cene
+                    function updateTotalPrice(height, width, depth, dezenPrice, additionalDezenPrice) {
+                        // Implementirajte logiku za izračunavanje konačne cene ovde
+                        const totalPrice = calculatePrice(height, width, depth) + dezenPrice + additionalDezenPrice;
+
+                        // Postavite tekst konačne cene u odgovarajući element na stranici
+                        document.getElementById('price').innerText = `Cena: ${totalPrice} evra`;
                     }
 
-                    updateTotalPrice();
+                    /*promena cene*/
+                    /*premesten*/
+                })
+                .catch(function (error) {
+                    console.error("Greška pri dohvatanju podataka: " + error);
                 });
+
+            /*fetch*/
+            const selectText = document.getElementById('select-text');
+            const chooseButton = document.getElementById('choose-pattern');
+            const patternPopup = document.getElementById('pattern-popup');
+            const closePopupButton = document.getElementById('close-popup');
+            const patternGrid = document.querySelector('.pattern-grid');
+            const selectedPattern = document.getElementById('selected-pattern');
+            const selectedImage = document.getElementById('selected-image');
+            const selectedPatternTitle = document.getElementById('selected-pattern-title');
+
+
+
+
+
+            /*dodato*/
+            const element = document.getElementById('pattern-popup');
+
+
+            // Prikažite pop-up prozor kada se klikne na dugme "Odaberi dezen"
+            chooseButton.addEventListener('click', () => {
+                patternPopup.classList.add('active');
             });
 
-            updateTotalPrice();
-        })
-        .catch(function (error) {
-            console.error("Greška pri dohvatanju podataka: " + error);
+            // Zatvorite pop-up prozor kada se klikne na dugme "Zatvori"
+            closePopupButton.addEventListener('click', () => {
+                patternPopup.classList.remove('active');
+                selectText.style.display = 'block'; // Ponovo prikažite tekst "Odaberite dezen fronta"
+            });
+
+            
+
+
+
+            /*dodato*/
+
+            
         });
-
-    const selectText = document.getElementById('select-text');
-    const chooseButton = document.getElementById('choose-pattern');
-    const patternPopup = document.getElementById('pattern-popup');
-    const closePopupButton = document.getElementById('close-popup');
-    const patternGrid = document.querySelector('.pattern-grid');
-    const selectedPattern = document.getElementById('selected-pattern');
-    const selectedImage = document.getElementById('selected-image');
-    const selectedPatternTitle = document.getElementById('selected-pattern-title');
-
-    // Prikažite pop-up prozor kada se klikne na dugme "Odaberi dezen"
-    chooseButton.addEventListener('click', () => {
-        patternPopup.classList.add('active');
-    });
-
-    // Zatvorite pop-up prozor kada se klikne na dugme "Zatvori"
-    closePopupButton.addEventListener('click', () => {
-        patternPopup.classList.remove('active');
-        selectText.style.display = 'block'; // Ponovo prikažite tekst "Odaberite dezen fronta"
-    });
-});
-/*KRAVA*/

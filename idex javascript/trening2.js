@@ -155,3 +155,4 @@ function calculateRecommendedFrontDimensions(height, width, depth) {
     return { recommendedHeight, recommendedWidth };
 }
 
+/* dodato */

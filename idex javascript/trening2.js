@@ -128,21 +128,7 @@ let kuhinjaData = {
         return;
     }
 
-    /***dodato*** */
-     const selectedPatternTitle = document.getElementById('selected-pattern-title').textContent;
-    let dezenPrice = 0;
-    if (selectedPatternTitle === "Crni kamen") {
-        dezenPrice = dezen2Price;
-    } else if (selectedPatternTitle === "Beli mermer") {
-        dezenPrice = dezen3Price;
-    }
-
-    const totalPrice = calculatePrice(height, width, depth) + dezenPrice;
-
-
-
-
-    /***dodato*** */
+   
 
     //const totalPrice = calculatePrice(height, width, depth);
 

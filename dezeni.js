@@ -308,4 +308,4 @@ function calculateRecommendedFrontDimensions(height, width, depth) {
     const recommendedWidth = width - 0.4; // Smanjite širinu za 4mm
     return { recommendedHeight, recommendedWidth };
 }
-/*dodato*/
+/*dodato---------dodato*/

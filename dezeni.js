@@ -220,6 +220,8 @@ function addToCart() {
     const widthInput = document.getElementById('width');
     const depthInput = document.getElementById('depth');
 
+    const selectedPatternTitle = document.getElementById('selected-pattern-title');
+
     const height = parseInt(heightInput.value);
     const width = parseInt(widthInput.value);
     const depth = parseInt(depthInput.value);
@@ -283,7 +285,7 @@ const selectedDezenName = selectedPatternTitle.textContent;
         width: width,
         depth: depth,
         price: totalPrice,
-        dezen: selectedDezen.name
+         dezen: selectedPatternTitle.textContent 
     };
 
     // Uzmi postojeće elemente iz localStorage ili inicijalizuj prazno ako ih nema
@@ -308,4 +310,4 @@ function calculateRecommendedFrontDimensions(height, width, depth) {
     const recommendedWidth = width - 0.4; // Smanjite širinu za 4mm
     return { recommendedHeight, recommendedWidth };
 }
-/*dodato---------dodato*/
+/*dodato*/

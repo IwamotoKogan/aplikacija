@@ -186,7 +186,7 @@ function calculate() {
         return;
     }
 
-    const totalPrice = calculatePrice(height, width, depth);
+   const totalPrice = calculatePrice(height, width, depth) + selectedDezenPrice;
 
     document.getElementById('price').innerText = `Cena: ${totalPrice} evra`;
 

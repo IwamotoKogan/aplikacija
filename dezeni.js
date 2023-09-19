@@ -234,7 +234,26 @@ function addToCart() {
         return;
     }
 
-    const totalPrice = calculatePrice(height, width, depth);
+   const basePrice = calculatePrice(height, width, depth); // Osnovna cena bez dezena
+/******************/
+const selectedDezenName = selectedPatternTitle.textContent;
+    const selectedDezen = dezeni.find(dezen => dezen.name === selectedDezenName);
+
+    if (selectedDezen) {
+        // Ako postoji odabrani dezen, ažurirajte cenu sa dezenom
+        const totalPrice = basePrice + selectedDezen.price;
+        document.getElementById('price').innerText = `Cena: ${totalPrice} evra`;
+
+        // Dodajte dezen u objekat newItem koji se dodaje u korpu
+        const newItem = {
+            height: height,
+            width: width,
+            depth: depth,
+            price: totalPrice,
+            dezen: selectedDezen.name // Dodajte ime dezena
+        };
+    }
+/***************/
 
     kuhinjaData.height = height;
     kuhinjaData.width = width;
@@ -263,7 +282,8 @@ function addToCart() {
         height: height,
         width: width,
         depth: depth,
-        price: totalPrice
+        price: totalPrice,
+        dezen: selectedDezen.name
     };
 
     // Uzmi postojeće elemente iz localStorage ili inicijalizuj prazno ako ih nema

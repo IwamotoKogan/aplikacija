@@ -1,7 +1,7 @@
   document.addEventListener('DOMContentLoaded', function () {
 
 
-
+let selectedDezenPrice = 0;
             /*fetch*/
             // Dohvatanje JSON podataka o dezenima
             fetch("dezeni.json")
@@ -78,6 +78,7 @@
 
                             // Pronađite dezen sa datim nazivom u JSON-u
                             selectedDezen = dezeni.find(dezen => dezen.name === patternName);
+                          selectedDezenPrice = selectedDezen.price;
 
                             
                         });

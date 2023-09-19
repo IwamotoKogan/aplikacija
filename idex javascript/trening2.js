@@ -86,6 +86,8 @@ function addToCart() {
     const widthInput = document.getElementById('width');
     const depthInput = document.getElementById('depth');
 
+    const selectedPatternTitle = document.getElementById('selected-pattern-title');
+
     const height = parseInt(heightInput.value);
     const width = parseInt(widthInput.value);
     const depth = parseInt(depthInput.value);
@@ -130,6 +132,7 @@ function addToCart() {
         width: width,
         depth: depth,
         price: totalPrice
+        dezen: selectedPatternTitle.textContent 
     };
 
     // Uzmi postojeće elemente iz localStorage ili inicijalizuj prazno ako ih nema

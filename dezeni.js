@@ -215,7 +215,7 @@ let kuhinjaData = {
     price: 0
 };
 
-function addToCart() {
+function addToCart(dezeni) {
     const heightInput = document.getElementById('height');
     const widthInput = document.getElementById('width');
     const depthInput = document.getElementById('depth');
@@ -236,10 +236,10 @@ function addToCart() {
         return;
     }
 
-   const basePrice = calculatePrice(height, width, depth); // Osnovna cena bez dezena
-/******************/
-const selectedDezenName = selectedPatternTitle.textContent;
-    const selectedDezen = dezeni.find(dezen => dezen.name === selectedDezenName);
+    const basePrice = calculatePrice(height, width, depth); // Osnovna cena bez dezena
+
+    const selectedPatternName = selectedPatternTitle.textContent;
+    const selectedDezen = dezeni.find(dezen => dezen.name === selectedPatternName);
 
     if (selectedDezen) {
         // Ako postoji odabrani dezen, ažurirajte cenu sa dezenom
@@ -254,49 +254,48 @@ const selectedDezenName = selectedPatternTitle.textContent;
             price: totalPrice,
             dezen: selectedDezen.name // Dodajte ime dezena
         };
+
+        kuhinjaData.height = height;
+        kuhinjaData.width = width;
+        kuhinjaData.depth = depth;
+        kuhinjaData.price = totalPrice;
+
+        const cartItems = document.getElementById('cart-items');
+        cartItems.innerText = parseInt(cartItems.innerText) + 1;
+
+        const cartButton = document.getElementById('cart-button');
+        const notification = document.createElement('div');
+        notification.className = 'notification';
+        notification.innerText = '+1';
+        cartButton.appendChild(notification);
+
+        // Izračunajte preporučene dimenzije fronta
+        const recommendedFrontDimensions = calculateRecommendedFrontDimensions(height, width, depth);
+
+        // Dodajte preporučene dimenzije fronta u objekat kuhinjaData
+        kuhinjaData.recommendedFrontDimensions = recommendedFrontDimensions;
+
+        // Sačuvajmo podatke u localStorage
+        localStorage.setItem('kuhinjaData', JSON.stringify(kuhinjaData));
+
+        // Uzmi postojeće elemente iz localStorage ili inicijalizuj prazno ako ih nema
+        const savedItems = JSON.parse(localStorage.getItem('items')) || [];
+
+        // Dodaj novi element u listu sačuvanih elemenata
+        savedItems.push(newItem);
+
+        // Sačuvaj ažuriranu listu elemenata u localStorage
+        localStorage.setItem('items', JSON.stringify(savedItems));
+
+        // Redirektuj na stranicu pregled_kuhinja.html
+        location.reload();
     }
-/***************/
-
-    kuhinjaData.height = height;
-    kuhinjaData.width = width;
-    kuhinjaData.depth = depth;
-    kuhinjaData.price = totalPrice;
-
-    const cartItems = document.getElementById('cart-items');
-    cartItems.innerText = parseInt(cartItems.innerText) + 1;
-
-    const cartButton = document.getElementById('cart-button');
-    const notification = document.createElement('div');
-    notification.className = 'notification';
-    notification.innerText = '+1';
-    cartButton.appendChild(notification);
-
-    // Izračunajte preporučene dimenzije fronta
-    const recommendedFrontDimensions = calculateRecommendedFrontDimensions(height, width, depth);
-
-    // Dodajte preporučene dimenzije fronta u objekat kuhinjaData
-    kuhinjaData.recommendedFrontDimensions = recommendedFrontDimensions;
-
-    // Sačuvajmo podatke u localStorage
-    localStorage.setItem('kuhinjaData', JSON.stringify(kuhinjaData));
-
-   /*izbrisano*/
-
-    // Uzmi postojeće elemente iz localStorage ili inicijalizuj prazno ako ih nema
-    const savedItems = JSON.parse(localStorage.getItem('items')) || [];
-
-    // Dodaj novi element u listu sačuvanih elemenata
-    savedItems.push(newItem);
-
-    // Sačuvaj ažuriranu listu elemenata u localStorage
-    localStorage.setItem('items', JSON.stringify(savedItems));
-
-    // Redirektuj na stranicu pregled_kuhinja.html
-    location.reload();
 }
 
 const kupiBtn = document.getElementById('kupi-btn');
-kupiBtn.addEventListener('click', addToCart);
+kupiBtn.addEventListener('click', () => {
+    addToCart(dezeni); // Prosledite dezeni niz funkciji addToCart
+});
 
 // Nakon izračunavanja cene, izračunajte preporučene dimenzije fronta
 function calculateRecommendedFrontDimensions(height, width, depth) {
@@ -304,4 +303,4 @@ function calculateRecommendedFrontDimensions(height, width, depth) {
     const recommendedWidth = width - 0.4; // Smanjite širinu za 4mm
     return { recommendedHeight, recommendedWidth };
 }
-/*dodato*/
+/*promena*/

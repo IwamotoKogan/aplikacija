@@ -280,13 +280,7 @@ const selectedDezenName = selectedPatternTitle.textContent;
     // Sačuvajmo podatke u localStorage
     localStorage.setItem('kuhinjaData', JSON.stringify(kuhinjaData));
 
-    const newItem = {
-        height: height,
-        width: width,
-        depth: depth,
-        price: totalPrice,
-         dezen: selectedPatternTitle.textContent 
-    };
+   /*izbrisano*/
 
     // Uzmi postojeće elemente iz localStorage ili inicijalizuj prazno ako ih nema
     const savedItems = JSON.parse(localStorage.getItem('items')) || [];

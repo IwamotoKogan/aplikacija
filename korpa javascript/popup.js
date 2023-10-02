@@ -1,3 +1,7 @@
+/*DODATOOOOOOO*/
+
+// Na vrhu skripte na stranici pregled_kuhinja.html
+// Na vrhu skripte na stranici pregled_kuhinja.html
 // Na vrhu skripte na stranici pregled_kuhinja.html
 function calculateRecommendedFrontDimensions(height, width, depth) {
     const recommendedHeight = height - 0.4; // Smanjite visinu za 4mm
@@ -13,65 +17,46 @@ if (savedItems.length > 0) {
     savedItems.forEach((item, index) => {
         const itemDetails = document.createElement('div');
         itemDetails.className = 'item-details';
-
+        
         // Izračunajte preporučene dimenzije fronta na osnovu unetih dimenzija
         const recommendedFrontDimensions = calculateRecommendedFrontDimensions(item.height, item.width, item.depth);
-
+        
         itemDetails.innerHTML = `
-            <p>Kreirali ste element: ${item.height}cm x ${item.width}cm x ${item.depth}cm, cena vašeg elementa je ${item.price} evra.</p>
+            <p>Kreiraliiii ste element: ${item.height}cm x ${item.width}cm x ${item.depth}cm, cena vašeg elementa je ${item.price} evra.</p>
             <p>Front: Preporučene dimenzije visina ${recommendedFrontDimensions.recommendedHeight}cm i širina ${recommendedFrontDimensions.recommendedWidth}cm.</p>
             <p>Dezen koji ste izabrali: ${item.dezen}</p>
             <button class="order-button" data-index="${index}">Naruči</button>
+
             <button class="delete-button" data-index="${index}">Izbriši</button>
         `;
         kuhinjaDetailsDiv1.appendChild(itemDetails);
 
-        /* Dodato */
+        /*dodato*/
         // Dodajte preporučene dimenzije u lokalno skladište za svaki element
-        savedItems[index].recommendedFrontDimensions = recommendedFrontDimensions;
-        localStorage.setItem('items', JSON.stringify(savedItems));
-        /* Dodato */
+    savedItems[index].recommendedFrontDimensions = recommendedFrontDimensions;
+    localStorage.setItem('items', JSON.stringify(savedItems));
+        /*dodato*/
     });
 } else {
     kuhinjaDetailsDiv1.innerHTML = "<p>Nemate nijedan element u korpi.</p>";
 }
+// Ostatak vašeg koda...
 
-// Dodatni kod za prikaz ukupne cene
-const totalPriceDiv = document.createElement('div');
-totalPriceDiv.id = 'total-price';
-totalPriceDiv.textContent = 'Ukupna cena: 0 evra';
-kuhinjaDetailsDiv1.appendChild(totalPriceDiv);
+// Ostatak vašeg koda...
 
-// Funkcija za ažuriranje ukupne cene
-function updateTotalPrice() {
-    const totalAmount = savedItems.reduce((total, item) => total + item.price, 0);
-    totalPriceDiv.textContent = `Ukupna cena: ${totalAmount} evra`;
-}
 
-// Dodajte događaj za naručivanje svih elemenata odjednom
-const orderAllButton = document.createElement('button');
-orderAllButton.id = 'order-all-button';
-orderAllButton.textContent = 'Naruči sve elemente';
-orderAllButton.addEventListener('click', function () {
-    // Ovde možete poslati podatke o svim elementima (sadržaj "savedItems") na server
-    // i obraditi narudžbu za sve elemente odjednom
-    // Nakon što je narudžba uspešno poslata, možete izbrisati sve elemente iz korpe
-    savedItems.splice(0, savedItems.length);
-    localStorage.setItem('items', JSON.stringify(savedItems));
-    kuhinjaDetailsDiv1.innerHTML = "<p>Nemate nijedan element u korpi.</p>";
-    updateTotalPrice(); // Ažurirajte prikaz ukupne cene
-});
 
-kuhinjaDetailsDiv1.appendChild(orderAllButton);
 
-// ... Ostatak vašeg koda ...
+
+
+
 
 const orderButtons = document.querySelectorAll('.order-button');
 orderButtons.forEach(button => {
     button.addEventListener('click', function () {
         const itemIndex = parseInt(button.getAttribute('data-index'));
         const selectedItem = savedItems[itemIndex];
-
+        
         // Prikazujemo popup
         showPopup();
 
@@ -100,7 +85,7 @@ orderButtons.forEach(button => {
         `;
     });
 });
-
+/*DODATOOOOOOO*/
 
 
 // JavaScript kod za prikazivanje/sakrivanje popup prozora
@@ -240,4 +225,3 @@ confirmOrderButton.addEventListener('click', function () {
 });
 
 /*DODATO BRISANJE ZA SUBMITOVANJE*/
-

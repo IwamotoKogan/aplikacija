@@ -200,7 +200,7 @@ function calculate() {
 
     // Prikaz preporučenog fronta ispod cene
     const recommendedFront = document.getElementById('recommended-front');
-    recommendedFront.innerHTML = `Dimenzije fronta za ovaj element visina ${recommendedFrontDimensions.recommendedHeight}cm i širina ${recommendedFrontDimensions.recommendedWidth}cm`;
+    recommendedFront.innerHTML = `Dimenzije fronta za kreirani element: ${message}` ;
 }
 
 document.getElementById('calculate-btn').addEventListener('click', calculate);
@@ -296,9 +296,28 @@ kupiBtn.addEventListener('click', () => {
 });
 
 // Nakon izračunavanja cene, izračunajte preporučene dimenzije fronta
+let message;
 function calculateRecommendedFrontDimensions(height, width, depth) {
-    const recommendedHeight = height - 0.4; // Smanjite visinu za 4mm
-    const recommendedWidth = width - 0.4; // Smanjite širinu za 4mm
-    return { recommendedHeight, recommendedWidth };
+   let recommendedHeight, recommendedWidth;
+
+    if (width <= 149) {
+        // Ako je širina manja ili jednaka 150cm
+        recommendedHeight = height - 0.4; // Smanjite visinu za 4mm
+        recommendedWidth = width - 0.4; // Smanjite širinu za 4mm
+        message = `visina ${recommendedHeight.toFixed(1)}cm i širina ${recommendedWidth.toFixed(1)}cm.`;
+    } else {
+        // Ako je širina veća od 150cm, podelite na dvoje vrata
+        const singleDoorWidth = (width  / 2)- 0.2; // Podelite širinu na dva vrata
+        recommendedWidth = singleDoorWidth;
+        recommendedHeight = height - 0.4; // Smanjite visinu za 4mm
+        message = `Unete dimenzije za širinu su preko 150cm. Potrebno je kreirati dvoje vrata 2 x ${singleDoorWidth.toFixed(1)}cm x ${recommendedHeight.toFixed(1)}cm`;
+    }
+
+    console.log('Preporučene dimenzije fronta:', recommendedHeight, recommendedWidth);
+    console.log('Poruka:', message);
+
+    return { recommendedHeight, recommendedWidth, message };
 }
-/*promena*/
+/*nova verzija*/
+
+

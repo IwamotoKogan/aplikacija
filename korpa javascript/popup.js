@@ -4,9 +4,25 @@
 // Na vrhu skripte na stranici pregled_kuhinja.html
 // Na vrhu skripte na stranici pregled_kuhinja.html
 function calculateRecommendedFrontDimensions(height, width, depth) {
-    const recommendedHeight = height - 0.4; // Smanjite visinu za 4mm
-    const recommendedWidth = width - 0.4; // Smanjite širinu za 4mm
-    return { recommendedHeight, recommendedWidth };
+    let recommendedHeight, recommendedWidth, message;
+
+    if (width <= 150) {
+        // Ako je širina manja ili jednaka 150cm
+        recommendedHeight = height - 0.4; // Smanjite visinu za 4mm
+        recommendedWidth = width - 0.4; // Smanjite širinu za 4mm
+        message = `Dimenzije fronta za ovaj element visina ${recommendedHeight.toFixed(1)}cm i širina ${recommendedWidth.toFixed(1)}cm.`;
+    } else {
+        // Ako je širina veća od 150cm, podelite na dvoje vrata
+        const singleDoorWidth = (width / 2) - 0.2; // Podelite širinu na dva vrata
+        recommendedWidth = singleDoorWidth;
+        recommendedHeight = height - 0.4; // Smanjite visinu za 4mm
+        message = `Unete dimenzije za širinu su preko 150cm. Potrebno je kreirati dvoje vrata 2x ${singleDoorWidth.toFixed(1)}cm x ${recommendedHeight.toFixed(1)}cm`;
+    }
+
+    console.log('Preporučene dimenzije fronta:', recommendedHeight, recommendedWidth);
+    console.log('Poruka:', message);
+
+    return { recommendedHeight, recommendedWidth, message };
 }
 const kuhinjaDetailsDiv1 = document.getElementById('kuhinja-details');
 const savedItems = JSON.parse(localStorage.getItem('items')) || [];
@@ -225,3 +241,4 @@ confirmOrderButton.addEventListener('click', function () {
 });
 
 /*DODATO BRISANJE ZA SUBMITOVANJE*/
+

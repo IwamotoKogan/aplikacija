@@ -250,7 +250,8 @@ function addToCart(dezeni) {
             width: width,
             depth: depth,
             price: totalPrice,
-            dezen: selectedDezen.name // Dodajte ime dezena
+            dezen: selectedDezen.name, // Dodajte ime dezena
+            recommendedFrontDimensions: kuhinjaData.recommendedFrontDimensions //dodato
         };
 
         kuhinjaData.height = height;

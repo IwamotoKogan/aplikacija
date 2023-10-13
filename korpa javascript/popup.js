@@ -240,5 +240,5 @@ confirmOrderButton.addEventListener('click', function () {
     window.location.href = "https://iwamotokogan.github.io/DIPO/thanks.html";
 });
 
-/*nova verzija*/
+/*nova verzija2*/
 

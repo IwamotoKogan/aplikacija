@@ -21,7 +21,7 @@ function calculateRecommendedFrontDimensions(height, width, depth) {
 
     console.log('Preporučene dimenzije fronta:', recommendedHeight, recommendedWidth);
     console.log('Poruka:', message);
-
+console.log(JSON.parse(localStorage.getItem('items'));
     return { recommendedHeight, recommendedWidth, message };
 }
 const kuhinjaDetailsDiv1 = document.getElementById('kuhinja-details');

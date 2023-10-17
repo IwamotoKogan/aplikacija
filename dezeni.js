@@ -267,7 +267,7 @@ function addToCart(dezeni) {
             depth: depth,
             price: totalPrice,//
             dezen: selectedDezen.name, // Dodajte ime dezena
-            recommendedFrontDimensions: kuhinjaData.message
+             message: kuhinjaData.recommendedFrontDimensions.message
         };
 
         kuhinjaData.height = height;

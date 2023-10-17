@@ -26,7 +26,7 @@ console.log(JSON.parse(localStorage.getItem('items')));
 }
 const kuhinjaDetailsDiv1 = document.getElementById('kuhinja-details');
 const savedItems = JSON.parse(localStorage.getItem('items')) || [];
-const kuhinjaData = JSON.parse(localStorage.getItem('kuhinjaData'))); // Dodajte ovu liniju
+const kuhinjaData = JSON.parse(localStorage.getItem('kuhinjaData')); // Dodajte ovu liniju
 
 if (savedItems.length > 0) {
     kuhinjaDetailsDiv1.innerHTML = '<h2>Moja korpa</h2>';

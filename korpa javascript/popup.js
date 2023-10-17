@@ -25,7 +25,9 @@ if (savedItems.length > 0) {
             <p>Kreiraliiii ste element: ${item.height}cm x ${item.width}cm x ${item.depth}cm, cena vašeg elementa je ${item.price} evra.</p>
             <p>Front: Preporučene dimenzije visina ${recommendedFrontDimensions.recommendedHeight}cm i širina ${recommendedFrontDimensions.recommendedWidth}cm.</p>
             <p>Dezen koji ste izabrali: ${item.dezen}</p>
-            <p>Front: ${item.recommendedFrontDimensions.message}</p>
+            if (item.recommendedFrontDimensions && item.recommendedFrontDimensions.message) {
+            itemDetails.innerHTML += `<p>Front: ${item.recommendedFrontDimensions.message}</p>`;
+        }
             <button class="order-button" data-index="${index}">Naruči</button>
 
             <button class="delete-button" data-index="${index}">Izbriši</button>

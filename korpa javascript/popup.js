@@ -4,25 +4,9 @@
 // Na vrhu skripte na stranici pregled_kuhinja.html
 // Na vrhu skripte na stranici pregled_kuhinja.html
 function calculateRecommendedFrontDimensions(height, width, depth) {
-    let recommendedHeight, recommendedWidth, message;
-
-    if (width <= 150) {
-        // Ako je širina manja ili jednaka 150cm
-        recommendedHeight = height - 0.4; // Smanjite visinu za 4mm
-        recommendedWidth = width - 0.4; // Smanjite širinu za 4mm
-        message = `Dimenzije fronta za ovaj element visina ${recommendedHeight.toFixed(1)}cm i širina ${recommendedWidth.toFixed(1)}cm.`;
-    } else {
-        // Ako je širina veća od 150cm, podelite na dvoje vrata
-        const singleDoorWidth = (width / 2) - 0.2; // Podelite širinu na dva vrata
-        recommendedWidth = singleDoorWidth;
-        recommendedHeight = height - 0.4; // Smanjite visinu za 4mm
-        message = `Unete dimenzije za širinu su preko 150cm. Potrebno je kreirati dvoje vrata 2x ${singleDoorWidth.toFixed(1)}cm x ${recommendedHeight.toFixed(1)}cm`;
-    }
-
-    console.log('Preporučene dimenzije fronta:', recommendedHeight, recommendedWidth);
-    console.log('Poruka:', message);
-console.log(JSON.parse(localStorage.getItem('items')));
-    return { recommendedHeight, recommendedWidth, message };
+    const recommendedHeight = height - 0.4; // Smanjite visinu za 4mm
+    const recommendedWidth = width - 0.4; // Smanjite širinu za 4mm
+    return { recommendedHeight, recommendedWidth };
 }
 const kuhinjaDetailsDiv1 = document.getElementById('kuhinja-details');
 const savedItems = JSON.parse(localStorage.getItem('items')) || [];
@@ -39,8 +23,7 @@ if (savedItems.length > 0) {
         
         itemDetails.innerHTML = `
             <p>Kreiraliiii ste element: ${item.height}cm x ${item.width}cm x ${item.depth}cm, cena vašeg elementa je ${item.price} evra.</p>
-            <p>Fffront: Preporučene dimenzije visina ${item.recommendedFrontDimensions.recommendedHeight}cm i širina ${item.recommendedFrontDimensions.recommendedWidth}cm.</p>
-
+            <p>Front: Preporučene dimenzije visina ${recommendedFrontDimensions.recommendedHeight}cm i širina ${recommendedFrontDimensions.recommendedWidth}cm.</p>
             <p>Dezen koji ste izabrali: ${item.dezen}</p>
             <button class="order-button" data-index="${index}">Naruči</button>
 
@@ -241,5 +224,6 @@ confirmOrderButton.addEventListener('click', function () {
     window.location.href = "https://iwamotokogan.github.io/DIPO/thanks.html";
 });
 
-/*nova */
+/*DODATO BRISANJE ZA SUBMITOVANJE*/
+
 

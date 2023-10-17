@@ -245,13 +245,13 @@ function addToCart(dezeni) {
         document.getElementById('price').innerText = `Cena: ${totalPrice} evra`;
 
         // Dodajte dezen u objekat newItem koji se dodaje u korpu
-        const newItem = {
+       const newItem = {
             height: height,
             width: width,
             depth: depth,
-            price: totalPrice,
+            price: totalPrice,//
             dezen: selectedDezen.name, // Dodajte ime dezena
-            recommendedFrontDimensions: kuhinjaData.recommendedFrontDimensions //dodato
+            recommendedFrontDimensions: kuhinjaData.message
         };
 
         kuhinjaData.height = height;
@@ -319,6 +319,6 @@ function calculateRecommendedFrontDimensions(height, width, depth) {
 
     return { recommendedHeight, recommendedWidth, message };
 }
-/*nova verzija*/
+/*nova verzija2*/
 
 

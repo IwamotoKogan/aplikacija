@@ -40,6 +40,7 @@ if (savedItems.length > 0) {
         itemDetails.innerHTML = `
             <p>Kreiraliiii ste element: ${item.height}cm x ${item.width}cm x ${item.depth}cm, cena vašeg elementa je ${item.price} evra.</p>
             <p>Fffront: Preporučene dimenzije visina ${item.recommendedFrontDimensions.recommendedHeight}cm i širina ${item.recommendedFrontDimensions.recommendedWidth}cm.</p>
+
             <p>Dezen koji ste izabrali: ${item.dezen}</p>
             <button class="order-button" data-index="${index}">Naruči</button>
 

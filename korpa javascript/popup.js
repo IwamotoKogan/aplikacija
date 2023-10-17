@@ -22,18 +22,11 @@ if (savedItems.length > 0) {
         const recommendedFrontDimensions = calculateRecommendedFrontDimensions(item.height, item.width, item.depth);
         
         itemDetails.innerHTML = `
-            <p>Kreirali ste element: ${item.height}cm x ${item.width}cm x ${item.depth}cm, cena vašeg elementa je ${item.price} evra.</p>
+            <p>Kreiraliiii ste element: ${item.height}cm x ${item.width}cm x ${item.depth}cm, cena vašeg elementa je ${item.price} evra.</p>
             <p>Front: Preporučene dimenzije visina ${recommendedFrontDimensions.recommendedHeight}cm i širina ${recommendedFrontDimensions.recommendedWidth}cm.</p>
             <p>Dezen koji ste izabrali: ${item.dezen}</p>
-        `;
-
-        // Proverite da li postoji recommendedFrontDimensions i da li sadrži message
-        if (item.recommendedFrontDimensions && item.recommendedFrontDimensions.message) {
-            itemDetails.innerHTML += `<p>Front: ${item.recommendedFrontDimensions.message}</p>`;
-        }
-
-        itemDetails.innerHTML += `
             <button class="order-button" data-index="${index}">Naruči</button>
+
             <button class="delete-button" data-index="${index}">Izbriši</button>
         `;
         kuhinjaDetailsDiv1.appendChild(itemDetails);
@@ -232,5 +225,6 @@ confirmOrderButton.addEventListener('click', function () {
 });
 
 /*DODATO BRISANJE ZA SUBMITOVANJE*/
+
 
 

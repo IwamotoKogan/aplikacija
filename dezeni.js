@@ -245,19 +245,7 @@ function addToCart(dezeni) {
         document.getElementById('price').innerText = `Cena: ${totalPrice} evra`;
 
         // Dodajte dezen u objekat newItem koji se dodaje u korpu
-       const newItem = {
-            height: height,
-            width: width,
-            depth: depth,
-            price: totalPrice,//
-            dezen: selectedDezen.name, // Dodajte ime dezena
-            recommendedFrontDimensions: kuhinjaData.message
-        };
-
-        kuhinjaData.height = height;
-        kuhinjaData.width = width;
-        kuhinjaData.depth = depth;
-        kuhinjaData.price = totalPrice;
+     
 
         const cartItems = document.getElementById('cart-items');
         cartItems.innerText = parseInt(cartItems.innerText) + 1;
@@ -270,6 +258,23 @@ function addToCart(dezeni) {
 
         // Izračunajte preporučene dimenzije fronta
         const recommendedFrontDimensions = calculateRecommendedFrontDimensions(height, width, depth);
+                /*promena*/
+                recommendedFrontDimensions.message = message;
+
+              const newItem = {
+            height: height,
+            width: width,
+            depth: depth,
+            price: totalPrice,//
+            dezen: selectedDezen.name, // Dodajte ime dezena
+            recommendedFrontDimensions: kuhinjaData.message
+        };
+
+        kuhinjaData.height = height;
+        kuhinjaData.width = width;
+        kuhinjaData.depth = depth;
+        kuhinjaData.price = totalPrice;
+/*promena*/
 
         // Dodajte preporučene dimenzije fronta u objekat kuhinjaData
         kuhinjaData.recommendedFrontDimensions = recommendedFrontDimensions;
@@ -319,6 +324,6 @@ function calculateRecommendedFrontDimensions(height, width, depth) {
 
     return { recommendedHeight, recommendedWidth, message };
 }
-/*nova verzija2*/
+/*nova verzija3*/
 
 

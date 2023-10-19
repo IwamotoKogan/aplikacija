@@ -1,4 +1,11 @@
-
+/*dodato*/
+ // Dodajte event listenere za dugmad "Da" i "Ne"
+  const yesButton = document.getElementById('yes-button');
+  const noButton = document.getElementById('no-button');
+  const kupiButton = document.getElementById('kupi-btn'); // Pretpostavljam da postoji dugme "Kupi"
+  const leftHingesButton = document.getElementById('left-hinges');
+const rightHingesButton = document.getElementById('right-hinges');
+/*dodato*/
 let selectedDezenPrice = 0;
 let dezeni = [];
 document.addEventListener('DOMContentLoaded', function () {
@@ -261,13 +268,19 @@ function addToCart(dezeni) {
                 /*promena*/
                 recommendedFrontDimensions.message = message;
 
+                /*pitanjaaaaa */
+     const answer = yesButton.classList.contains('selected') ? 'Da' : 'Ne';
+     const selectedHinges = leftHingesButton.classList.contains('selected') ? 'Leva str' : 'Desna str';
+     /*pitanjaaaaa */
               const newItem = {
             height: height,
             width: width,
             depth: depth,
             price: totalPrice,//
             dezen: selectedDezen.name, // Dodajte ime dezena
-             message: recommendedFrontDimensions.message
+            message: recommendedFrontDimensions.message,
+            answer: answer,
+            hinges: selectedHinges
         };
 
         kuhinjaData.height = height;
@@ -324,6 +337,53 @@ function calculateRecommendedFrontDimensions(height, width, depth) {
 
     return { recommendedHeight, recommendedWidth, message };
 }
-/*nova verzija3*/
+
+
+
+
+
+
+
+
+/*PITANJAAAAAAAAAAAAAAAAAAAAAAAAAAAA */
+
+  
+
+  // Označavanje odgovora kada se klikne na dugme "Da"
+  yesButton.addEventListener('click', function () {
+    yesButton.classList.add('selected');
+    noButton.classList.remove('selected');
+    enableKupiButtonIfAnswered();
+  });
+
+  // Označavanje odgovora kada se klikne na dugme "Ne"
+  noButton.addEventListener('click', function () {
+    noButton.classList.add('selected');
+    yesButton.classList.remove('selected');
+    enableKupiButtonIfAnswered();
+  });
+
+  // Funkcija za omogućavanje dugmeta "Kupi" ako je odgovoreno na pitanje
+  function enableKupiButtonIfAnswered() {
+    if (yesButton.classList.contains('selected') || noButton.classList.contains('selected')) {
+      kupiButton.removeAttribute('disabled');
+    } else {
+      kupiButton.setAttribute('disabled', 'disabled');
+    }
+  }
+
+  leftHingesButton.addEventListener('click', () => {
+  leftHingesButton.classList.add('selected');
+  rightHingesButton.classList.remove('selected');
+});
+
+rightHingesButton.addEventListener('click', () => {
+  rightHingesButton.classList.add('selected');
+  leftHingesButton.classList.remove('selected');
+});
+
+
+/*PITANJAAAAAAAAAAAAAAAAAAAAAAAAAAAA */
+/*nova verzija4*/
 
 

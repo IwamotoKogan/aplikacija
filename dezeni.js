@@ -311,6 +311,45 @@ function addToCart(dezeni) {
 
 const kupiBtn = document.getElementById('kupi-btn');
 kupiBtn.addEventListener('click', () => {
+     /* ovan */
+    if (!selectedPatternTitle.textContent) {
+        alert('Niste odabrali dezen. Da biste završili narudžbinu, potrebno je odabrati dezen.');
+        return;
+    }
+
+    // Provera da li su odabrane šarke
+    const selectedHinges = document.querySelector('.hinges-button.selected');
+    if (!selectedHinges) {
+        alert('Niste odabrali šarke. Da biste završili narudžbinu, potrebno je odabrati šarke.');
+        return;
+    }
+
+    // Provera da li je odgovoreno na pitanje o nogicama
+    const answer = yesButton.classList.contains('selected') ? 'Da' : 'Ne';
+    if (!answer) {
+        alert('Niste odgovorili na pitanje o nogicama. Da biste završili narudžbinu, potrebno je odabrati odgovor.');
+        return;
+    }
+
+    // Provera da li su unete dimenzije
+    const heightInput = document.getElementById('height');
+    const widthInput = document.getElementById('width');
+    const depthInput = document.getElementById('depth');
+
+    const height = parseInt(heightInput.value);
+    const width = parseInt(widthInput.value);
+    const depth = parseInt(depthInput.value);
+
+    if (!isValidNumber(height) || !isValidNumber(width) || !isValidNumber(depth)) {
+        alert('Niste uneli validne dimenzije. Da biste završili narudžbinu, potrebno je uneti validne dimenzije.');
+        return;
+    }
+
+    if (!isValidDimensions(height, width, depth)) {
+        alert('Unete dimenzije su izvan dozvoljenog opsega. Da biste završili narudžbinu, potrebno je uneti validne dimenzije.');
+        return;
+    }
+    /* ovan */
     addToCart(dezeni); // Prosledite dezeni niz funkciji addToCart
 });
 
@@ -365,25 +404,37 @@ function calculateRecommendedFrontDimensions(height, width, depth) {
 
   // Funkcija za omogućavanje dugmeta "Kupi" ako je odgovoreno na pitanje
   function enableKupiButtonIfAnswered() {
-    if (yesButton.classList.contains('selected') || noButton.classList.contains('selected')) {
-      kupiButton.removeAttribute('disabled');
+    /*ovan */
+    const selectedHinges = document.querySelector('.hinges-button.selected');
+    const answer = yesButton.classList.contains('selected') || noButton.classList.contains('selected');
+    if (selectedHinges && answer) {
+        kupiBtn.removeAttribute('disabled');
     } else {
-      kupiButton.setAttribute('disabled', 'disabled');
+        kupiBtn.setAttribute('disabled', 'disabled');
     }
+    /*ovan */
   }
 
   leftHingesButton.addEventListener('click', () => {
   leftHingesButton.classList.add('selected');
   rightHingesButton.classList.remove('selected');
+  /*ovan */
+  enableKupiButtonIfAnswered();
+  /*ovan */
 });
 
 rightHingesButton.addEventListener('click', () => {
   rightHingesButton.classList.add('selected');
   leftHingesButton.classList.remove('selected');
+  /*ovan */
+  enableKupiButtonIfAnswered();
+  /*ovan */
 });
 
 
 /*PITANJAAAAAAAAAAAAAAAAAAAAAAAAAAAA */
-/*nova verzija4*/
+/*nova verzija5*/
+
+
 
 

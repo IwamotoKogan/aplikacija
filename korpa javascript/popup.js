@@ -186,10 +186,15 @@ closeModalButton.addEventListener('click', hideDeleteModal);
 
 
 
+/*sumiranje cena svih elemenata */
+let totalCost = 0;
+savedItems.forEach(item => {
+    totalCost += item.price;
+});
+const totalCostElement = document.getElementById('total-cost');
+totalCostElement.textContent = `Ukupna cena: ${totalCost} evra`;
 
-
-
-
+/*sumiranje cena svih elemenata */
 
 
 
@@ -229,7 +234,7 @@ confirmOrderButton.addEventListener('click', function () {
     window.location.href = "https://iwamotokogan.github.io/DIPO/thanks.html";
 });
 
-/*promena3*/
+/*promena4*/
 
 
 

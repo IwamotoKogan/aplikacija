@@ -246,6 +246,29 @@ function addToCart(dezeni) {
     const selectedPatternName = selectedPatternTitle.textContent;
     const selectedDezen = dezeni.find(dezen => dezen.name === selectedPatternName);
 
+ /*ovan*/
+                                                           // Dodatna logika za proveru odabranih opcija
+    const isYesSelected = yesButton.classList.contains('selected');
+    const isNoSelected = noButton.classList.contains('selected');
+    const isLeftHingeSelected = leftHingesButton.classList.contains('selected');
+    const isRightHingeSelected = rightHingesButton.classList.contains('selected');
+
+    if (!(isYesSelected || isNoSelected)) {
+        alert("Niste odabrali 'Da' ili 'Ne'.");
+        return;
+    }
+
+    if (!(isLeftHingeSelected || isRightHingeSelected)) {
+        alert("Niste odabrali stranu šarki.");
+        return;
+    }
+
+    if (!selectedDezen) {
+        alert("Niste odabrali dezen.");
+        return;
+    }
+ /*ovan*/
+
     if (selectedDezen) {
         // Ako postoji odabrani dezen, ažurirajte cenu sa dezenom
         const totalPrice = basePrice + selectedDezen.price;
@@ -385,40 +408,7 @@ rightHingesButton.addEventListener('click', () => {
 
 /*PITANJAAAAAAAAAAAAAAAAAAAAAAAAAAAA */
 
-/*ovan*/
-kupiBtn.addEventListener('click', () => {
-    const isYesSelected = yesButton.classList.contains('selected');
-    const isNoSelected = noButton.classList.contains('selected');
-    const isLeftHingeSelected = leftHingesButton.classList.contains('selected');
-    const isRightHingeSelected = rightHingesButton.classList.contains('selected');
 
-    // Provera da li je odabrano 'Da' ili 'Ne' i 'Levo' ili 'Desno'
-    /*if ((isYesSelected || isNoSelected) && (isLeftHingeSelected || isRightHingeSelected)) {
-        addToCart(dezeni);
-    } else {
-        alert("Molimo vas da odaberete odgovor i stranu vrata pre nego što kupite.");
-     return;
-    }*/
- if (isYesSelected || isNoSelected) {
-        if (isLeftHingeSelected || isRightHingeSelected) {
-            if (selectedDezen) {
-                isEverythingSelected = true;
-            } else {
-                alert("Niste odabrali dezen.");
-            }
-        } else {
-            alert("Niste odabrali stranu šarki.");
-        }
-    } else {
-        alert("Niste odabrali 'Da' ili 'Ne'.");
-    }
-
-    if (isEverythingSelected) {
-        addToCart(dezeni);
-    }
-});
-
-/*ovan*/
 /*nova verzija4*/
 
 

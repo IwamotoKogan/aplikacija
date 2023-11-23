@@ -254,7 +254,7 @@ function addToCart(dezeni) {
     const isRightHingeSelected = rightHingesButton.classList.contains('selected');
 
     if (!(isYesSelected || isNoSelected)) {
-        alert("Niste odabrali 'Da' ili 'Ne'.");
+        alert("Niste odgovorili da li želite da element ima ugradjene nogice'.");
         return;
     }
 
@@ -264,7 +264,7 @@ function addToCart(dezeni) {
     }
 
     if (!selectedDezen) {
-        alert("Niste odabrali dezen.");
+        alert("Niste odabrali dezen elementa.");
         return;
     }
  /*ovan*/

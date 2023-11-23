@@ -311,46 +311,12 @@ function addToCart(dezeni) {
 
 const kupiBtn = document.getElementById('kupi-btn');
 kupiBtn.addEventListener('click', () => {
-     /* ovan */
-    if (!selectedPatternTitle.textContent) {
-        alert('Niste odabrali dezen. Da biste završili narudžbinu, potrebno je odabrati dezen.');
-        return;
+     
+    if (selectedDezen && selectedHinges && (yesButton.classList.contains('selected') || noButton.classList.contains('selected'))) {
+        addToCart(dezeni);
+    } else {
+        alert("Niste uneli sve potrebne informacije.");
     }
-
-    // Provera da li su odabrane šarke
-    const selectedHinges = document.querySelector('.hinges-button.selected');
-    if (!selectedHinges) {
-        alert('Niste odabrali šarke. Da biste završili narudžbinu, potrebno je odabrati šarke.');
-        return;
-    }
-
-    // Provera da li je odgovoreno na pitanje o nogicama
-    const answer = yesButton.classList.contains('selected') ? 'Da' : 'Ne';
-    if (!answer) {
-        alert('Niste odgovorili na pitanje o nogicama. Da biste završili narudžbinu, potrebno je odabrati odgovor.');
-        return;
-    }
-
-    // Provera da li su unete dimenzije
-    const heightInput = document.getElementById('height');
-    const widthInput = document.getElementById('width');
-    const depthInput = document.getElementById('depth');
-
-    const height = parseInt(heightInput.value);
-    const width = parseInt(widthInput.value);
-    const depth = parseInt(depthInput.value);
-
-    if (!isValidNumber(height) || !isValidNumber(width) || !isValidNumber(depth)) {
-        alert('Niste uneli validne dimenzije. Da biste završili narudžbinu, potrebno je uneti validne dimenzije.');
-        return;
-    }
-
-    if (!isValidDimensions(height, width, depth)) {
-        alert('Unete dimenzije su izvan dozvoljenog opsega. Da biste završili narudžbinu, potrebno je uneti validne dimenzije.');
-        return;
-    }
-    /* ovan */
-    addToCart(dezeni); // Prosledite dezeni niz funkciji addToCart
 });
 
 // Nakon izračunavanja cene, izračunajte preporučene dimenzije fronta
@@ -407,7 +373,7 @@ function calculateRecommendedFrontDimensions(height, width, depth) {
     /*ovan */
     const selectedHinges = document.querySelector('.hinges-button.selected');
     const answer = yesButton.classList.contains('selected') || noButton.classList.contains('selected');
-    if (selectedHinges && answer) {
+    if (selectedHinges && answer  && selectedDezen) {
         kupiBtn.removeAttribute('disabled');
     } else {
         kupiBtn.setAttribute('disabled', 'disabled');
@@ -433,7 +399,7 @@ rightHingesButton.addEventListener('click', () => {
 
 
 /*PITANJAAAAAAAAAAAAAAAAAAAAAAAAAAAA */
-/*nova verzija5*/
+/*nova verzija6*/
 
 
 

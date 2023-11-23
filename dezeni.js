@@ -89,9 +89,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     // Pronađite dezen sa datim nazivom u JSON-u
                     selectedDezen = dezeni.find(dezen => dezen.name === patternName);
                     selectedDezenPrice = selectedDezen.price;
-                 /*ovan */
-                    enableKupiButtonIfAnswered();
-                    /*ovan */
                 });
             });
 
@@ -314,12 +311,7 @@ function addToCart(dezeni) {
 
 const kupiBtn = document.getElementById('kupi-btn');
 kupiBtn.addEventListener('click', () => {
-     
-    if (selectedDezen && selectedHinges && (yesButton.classList.contains('selected') || noButton.classList.contains('selected'))) {
-        addToCart(dezeni);
-    } else {
-        alert("Niste uneli sve potrebne informacije.");
-    }
+    addToCart(dezeni); // Prosledite dezeni niz funkciji addToCart
 });
 
 // Nakon izračunavanja cene, izračunajte preporučene dimenzije fronta
@@ -373,37 +365,25 @@ function calculateRecommendedFrontDimensions(height, width, depth) {
 
   // Funkcija za omogućavanje dugmeta "Kupi" ako je odgovoreno na pitanje
   function enableKupiButtonIfAnswered() {
-    /*ovan */
-    const selectedHinges = document.querySelector('.hinges-button.selected');
-    const answer = yesButton.classList.contains('selected') || noButton.classList.contains('selected');
-    if (selectedHinges && answer  && selectedDezen) {
-        kupiBtn.removeAttribute('disabled');
+    if (yesButton.classList.contains('selected') || noButton.classList.contains('selected')) {
+      kupiButton.removeAttribute('disabled');
     } else {
-        kupiBtn.setAttribute('disabled', 'disabled');
+      kupiButton.setAttribute('disabled', 'disabled');
     }
-    /*ovan */
   }
 
   leftHingesButton.addEventListener('click', () => {
   leftHingesButton.classList.add('selected');
   rightHingesButton.classList.remove('selected');
-  /*ovan */
-  enableKupiButtonIfAnswered();
-  /*ovan */
 });
 
 rightHingesButton.addEventListener('click', () => {
   rightHingesButton.classList.add('selected');
   leftHingesButton.classList.remove('selected');
-  /*ovan */
-  enableKupiButtonIfAnswered();
-  /*ovan */
 });
 
 
 /*PITANJAAAAAAAAAAAAAAAAAAAAAAAAAAAA */
-/*nova verzija7*/
-
-
+/*nova verzija1*/
 
 

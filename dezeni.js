@@ -397,10 +397,11 @@ kupiBtn.addEventListener('click', () => {
         addToCart(dezeni);
     } else {
         alert("Molimo vas da odaberete odgovor i stranu vrata pre nego što kupite.");
+     return;
     }
 });
 
 /*ovan*/
-/*nova verzija2*/
+/*nova verzija3*/
 
 

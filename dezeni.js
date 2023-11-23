@@ -89,6 +89,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     // Pronađite dezen sa datim nazivom u JSON-u
                     selectedDezen = dezeni.find(dezen => dezen.name === patternName);
                     selectedDezenPrice = selectedDezen.price;
+                 /*ovan */
+                    enableKupiButtonIfAnswered();
+                    /*ovan */
                 });
             });
 
@@ -399,7 +402,7 @@ rightHingesButton.addEventListener('click', () => {
 
 
 /*PITANJAAAAAAAAAAAAAAAAAAAAAAAAAAAA */
-/*nova verzija6*/
+/*nova verzija7*/
 
 
 

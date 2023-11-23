@@ -393,15 +393,32 @@ kupiBtn.addEventListener('click', () => {
     const isRightHingeSelected = rightHingesButton.classList.contains('selected');
 
     // Provera da li je odabrano 'Da' ili 'Ne' i 'Levo' ili 'Desno'
-    if ((isYesSelected || isNoSelected) && (isLeftHingeSelected || isRightHingeSelected)) {
+    /*if ((isYesSelected || isNoSelected) && (isLeftHingeSelected || isRightHingeSelected)) {
         addToCart(dezeni);
     } else {
         alert("Molimo vas da odaberete odgovor i stranu vrata pre nego što kupite.");
      return;
+    }*/
+ if (isYesSelected || isNoSelected) {
+        if (isLeftHingeSelected || isRightHingeSelected) {
+            if (selectedDezen) {
+                isEverythingSelected = true;
+            } else {
+                alert("Niste odabrali dezen.");
+            }
+        } else {
+            alert("Niste odabrali stranu šarki.");
+        }
+    } else {
+        alert("Niste odabrali 'Da' ili 'Ne'.");
+    }
+
+    if (isEverythingSelected) {
+        addToCart(dezeni);
     }
 });
 
 /*ovan*/
-/*nova verzija3*/
+/*nova verzija4*/
 
 

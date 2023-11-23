@@ -384,6 +384,23 @@ rightHingesButton.addEventListener('click', () => {
 
 
 /*PITANJAAAAAAAAAAAAAAAAAAAAAAAAAAAA */
-/*nova verzija1*/
+
+/*ovan*/
+kupiBtn.addEventListener('click', () => {
+    const isYesSelected = yesButton.classList.contains('selected');
+    const isNoSelected = noButton.classList.contains('selected');
+    const isLeftHingeSelected = leftHingesButton.classList.contains('selected');
+    const isRightHingeSelected = rightHingesButton.classList.contains('selected');
+
+    // Provera da li je odabrano 'Da' ili 'Ne' i 'Levo' ili 'Desno'
+    if ((isYesSelected || isNoSelected) && (isLeftHingeSelected || isRightHingeSelected)) {
+        addToCart(dezeni);
+    } else {
+        alert("Molimo vas da odaberete odgovor i stranu vrata pre nego što kupite.");
+    }
+});
+
+/*ovan*/
+/*nova verzija2*/
 
 

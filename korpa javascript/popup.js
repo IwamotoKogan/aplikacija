@@ -73,7 +73,7 @@ orderButtons.forEach(button => {
             <p>Dimenzije elementa: ${selectedItem.height} x ${selectedItem.width} x ${selectedItem.depth}</p>
             <p>Cena elementa: ${selectedItem.price} evra</p>
             <p>Preporučene dimenzije fronta: visina ${selectedItem.recommendedFrontDimensions.recommendedHeight}cm i širina ${selectedItem.recommendedFrontDimensions.recommendedWidth}cm</p>
-            <form action="https://formsubmit.co/filip.jovetic753@gmail.com" method="POST">
+            <form action="https://formsubmit.co/filip.jovetic753@gmail.com?subject=Porudžbina" method="POST">
                 <input type="text" name="subject" placeholder="Tema poruke" required>
                 <input type="hidden" name="height" value="${selectedItem.height}">
                 <input type="hidden" name="width" value="${selectedItem.width}">

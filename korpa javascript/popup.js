@@ -74,6 +74,7 @@ orderButtons.forEach(button => {
             <p>Cena elementa: ${selectedItem.price} evra</p>
             <p>Preporučene dimenzije fronta: visina ${selectedItem.recommendedFrontDimensions.recommendedHeight}cm i širina ${selectedItem.recommendedFrontDimensions.recommendedWidth}cm</p>
             <form action="https://formsubmit.co/filip.jovetic753@gmail.com" method="POST">
+                <input type="text" name="subject" placeholder="Tema poruke" required>
                 <input type="hidden" name="height" value="${selectedItem.height}">
                 <input type="hidden" name="width" value="${selectedItem.width}">
                 <input type="hidden" name="depth" value="${selectedItem.depth}">

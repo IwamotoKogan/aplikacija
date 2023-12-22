@@ -78,8 +78,11 @@ orderButtons.forEach(button => {
                 <input type="hidden" name="width" value="${selectedItem.width}">
                 <input type="hidden" name="depth" value="${selectedItem.depth}">
                 <input type="hidden" name="price" value="${selectedItem.price}">
-                <input type="hidden" name="recommendedHeight" value="${selectedItem.recommendedFrontDimensions.recommendedHeight}">
-                <input type="hidden" name="recommendedWidth" value="${selectedItem.recommendedFrontDimensions.recommendedWidth}">
+                <input type="hidden" name="dezen" value="${selectedItem.dezen}">
+                <input type="hidden" name="front" value="${selectedItem.message}">
+                <input type="hidden" name="šarke" value="${selectedItem.hinges}">
+                <input type="hidden" name="nogice" value="${selectedItem.answer}">
+               
                 <input type="hidden" name="_next" value="https://iwamotokogan.github.io/DIPO/thanks.html">
                 <input type="text" name="ime" placeholder="Ime" required>
                 <input type="text" name="prezime" placeholder="Prezime" required>
